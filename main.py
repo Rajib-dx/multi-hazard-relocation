@@ -20,18 +20,17 @@ from engines.capacity_engine import calculate_carrying_capacity
 from optimization.relocation_optimizer import optimize_relocation
 
 
-# ==========================================
 # 1. LOAD DATA
-# ==========================================
+
 
 settlements = pd.read_csv("data/settlements.csv")
 sites = pd.read_csv("data/site.csv")
 distances = pd.read_csv("data/distances.csv")
 
 
-# ==========================================
+
 # 2. PREPROCESS DATA
-# ==========================================
+
 
 settlements = preprocess_settlements(settlements)
 sites = preprocess_sites(sites)
@@ -43,9 +42,9 @@ print("\nPREPROCESSED SITES")
 print(sites)
 
 
-# ==========================================
+
 # 3. HAZARD ENGINE
-# ==========================================
+
 
 settlements = calculate_hazard_score(settlements)
 
@@ -64,9 +63,9 @@ print(
 )
 
 
-# ==========================================
+
 # 4. VULNERABILITY ENGINE
-# ==========================================
+
 
 settlements = calculate_vulnerability_score(settlements)
 
@@ -92,9 +91,9 @@ print(
 )
 
 
-# ==========================================
+
 # 5. MULTI-HAZARD RISK ENGINE
-# ==========================================
+
 
 settlements = calculate_risk_score(settlements)
 
@@ -112,11 +111,11 @@ print(
         ]
     ]
 )
+print(f"imaran: {settlements.columns}")
 
 
-# ==========================================
 # 6. RELOCATION FILTER
-# ==========================================
+
 
 relocation_candidates = filter_relocation_candidates(settlements)
 
@@ -138,9 +137,8 @@ print(
 
 
 
-# ==========================================
+
 # 7. SITE SUITABILITY ENGINE
-# ==========================================
 
 sites = calculate_site_suitability(sites)
 
@@ -202,6 +200,7 @@ print("FINAL RELOCATION PLAN")
 print("================================")
 
 print(relocation_plan)
+print(relocation_plan.columns)
 
 
 print("\n================================")
@@ -217,4 +216,3 @@ print(
         ]
     ]
 )
-

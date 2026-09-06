@@ -8,9 +8,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from main import relocation_candidates
 
-# =========================
+
 # LOAD DATA
-# =========================
 
 
 sites = pd.read_csv(
@@ -22,9 +21,9 @@ distances = pd.read_csv(
 )
 
 
-# =========================
+
 # CREATE MAP
-# =========================
+
 
 map_center = [
     relocation_candidates["latitude"].mean(),
@@ -38,9 +37,9 @@ relocation_map = folium.Map(
 )
 
 
-# =========================
+
 # SETTLEMENT MARKERS
-# =========================
+
 
 for _, candidate in relocation_candidates.iterrows():
 
@@ -76,9 +75,8 @@ for _, candidate in relocation_candidates.iterrows():
     ).add_to(relocation_map)
 
 
-# =========================
 # CANDIDATE SITE MARKERS
-# =========================
+
 
 for _, site in sites.iterrows():
 
@@ -121,10 +119,9 @@ for _, site in sites.iterrows():
     ).add_to(relocation_map)
 
 
-# =========================
-# DRAW TEMPORARY ROUTES
+
 # NEAREST SITE FOR EACH SETTLEMENT
-# =========================
+
 
 for _, candidate in relocation_candidates.iterrows():
 
@@ -180,9 +177,8 @@ for _, candidate in relocation_candidates.iterrows():
     ).add_to(relocation_map)
 
 
-# =========================
 # SAVE MAP
-# =========================
+
 
 relocation_map.save(
     "maps/relocation_map.html"

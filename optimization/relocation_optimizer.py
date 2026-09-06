@@ -75,6 +75,8 @@ def optimize_relocation(
 
             possible_sites.append({
                 "site_id": site_id,
+                "site_latitude": site["latitude"],
+                "site_longitude": site["longitude"],
                 "distance_km": distance_km,
                 "suitability_score": site["suitability_score"],
                 "carrying_capacity": site["carrying_capacity"]
@@ -85,8 +87,12 @@ def optimize_relocation(
 
             assignments.append({
                 "settlement_id": settlement_id,
+                "settlement_latitude": settlement["latitude"],
+                "settlement_longitude": settlement["longitude"],
                 "population": population,
                 "assigned_site": None,
+                "site_latitude": None,
+                "site_longitude": None,
                 "distance_km": None,
                 "status": "NO SUITABLE SITE"
             })
@@ -115,8 +121,12 @@ def optimize_relocation(
 
         assignments.append({
             "settlement_id": settlement_id,
+            "settlement_latitude": settlement["latitude"],
+            "settlement_longitude": settlement["longitude"],
             "population": population,
             "assigned_site": selected_site["site_id"],
+            "site_latitude": selected_site["site_latitude"],
+            "site_longitude": selected_site["site_longitude"],
             "distance_km": selected_site["distance_km"],
             "site_suitability": selected_site["suitability_score"],
             "status": "ASSIGNED"
